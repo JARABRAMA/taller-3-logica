@@ -1,36 +1,36 @@
 def merge_sort(ls: list) -> list:
     if len(ls) <= 1: 
         # the list is sorted
-        return list
+        return ls
     
-    midle = len(ls) // 2 # 1
+    mid = len(ls) // 2 # 1
     
-    rigth = ls[midle:] # 1
-    left = ls[:midle] # 1 
+    right = ls[mid:] # 1
+    left = ls[:mid] # 1 
     
-    sorted_rigth = merge_sort(rigth) # f(n/2)
+    sorted_right = merge_sort(right) # f(n/2)
     sorted_left = merge_sort(left) # f(n/2)
 
-    return merge(left, rigth) # n
-    # the complexity of the funtion is n + 2f(n/2)
+    return merge(sorted_left, sorted_right) # n
+    # the complexity of the function is n + 2f(n/2)
 
 
-def merge(left: list, rigth: list) -> list:
+def merge(left: list, right: list) -> list:
     result = [] # 1
-    i, j = 0, 0 # iteratives variables 1
+    i, j = 0, 0 # iterative variables 1
     # the complexity if this imperative part is 2
     
-    while i < len(left) and j < len(rigth): # n - r
-        if left[i] < rigth[j]: # n - r
+    while i < len(left) and j < len(right): # n - r
+        if left[i] < right[j]: # n - r
             result.append(left[i]) # n - r
             i += 1 # n -r
         else: 
-            result.append(rigth[j]) # n - r 
+            result.append(right[j]) # n - r 
             j += 1 # n - r
         # the of the while complexity will be: 2(n - r)
     
     result.extend(left[i:]) # if there is a rest append it to result
-    result.extend(rigth[j:]) # r 
+    result.extend(right[j:]) # r 
     return result
     # the complexity of the function 2n - r 
     # in BigOh O(n)
